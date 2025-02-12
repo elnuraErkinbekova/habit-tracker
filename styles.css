@@ -1,0 +1,40 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fce4ec;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 90vw;
+    padding: 0;
+}
+
+.circle-button {
+    width: 12.5vw; /* 1/7 ширины экрана */
+    height: 12.5vw;
+    max-width: 150px; /* Ограничение максимального размера */
+    max-height: 150px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ffccbc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.circle-button img {
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+}
+
+.circle-button:hover {
+    transform: scale(1.1);
+}
