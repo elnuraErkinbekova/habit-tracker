@@ -1,40 +1,85 @@
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #fce4ec;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #fce4ec;
+  transition: margin-left 0.3s;
 }
 
 .button-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 90vw;
-    padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  text-align: center;
 }
 
 .circle-button {
-    width: 12.5vw; /* 1/7 ширины экрана */
-    height: 12.5vw;
-    max-width: 150px; /* Ограничение максимального размера */
-    max-height: 150px;
-    border-radius: 50%;
-    border: none;
-    background-color: #ffccbc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: transform 0.3s;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 3px solid black;
+  background-color: #ffccbc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  font-size: 1.2rem;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
 }
 
 .circle-button img {
-    width: 80%;
-    height: 80%;
-    border-radius: 50%;
+  width: 60%;
+  height: auto;
 }
 
 .circle-button:hover {
-    transform: scale(1.1);
+  background-color: #ffab91; /* Lighter coral on hover */
+  transform: scale(1.1);
+}
+
+.top-half {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-half img {
+  max-width: 60%;
+  max-height: 60%;
+}
+
+.bottom-half {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.sidebar {
+  position: fixed;
+  left: -250px; /* Hidden by default */
+  width: 250px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: left 0.3s;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+body.sidebar-open {
+  margin-left: 250px; /* Adjusts when sidebar is open */
 }
