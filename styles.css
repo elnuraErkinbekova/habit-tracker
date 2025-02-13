@@ -3,82 +3,77 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 100vh;
-  margin: 0;
-}
-
-.button-container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
   text-align: center;
+  font-family: "Poppins", sans-serif;
+  
 }
 
-.circle-button {
-  width: 220px;
-  height: 220px;
+.container {
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 25px;
+  justify-content: center;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* === 3D КНОПКИ === */
+.habit-button {
+  text-decoration: none;
+  border: none;
   border-radius: 50%;
-  border: 3px solid black;
-  background-color: #ffccbc;
+  width: 110px;
+  height: 110px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #4A4A4A;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  padding: 15px;
-  font-size: 1.2rem;
-  overflow: hidden;
-  position: relative;
+  justify-content: center;
+  background: linear-gradient(145deg, #E8E8E8, #C5C5C5); /* Объёмный эффект */
+  
+  /* ГЛУБОКИЕ ТЕНИ (эффект выпуклости) */
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3), 
+              -10px -10px 20px rgba(255, 255, 255, 0.9),
+              inset 2px 2px 5px rgba(255, 255, 255, 0.7),
+              inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+  
+  transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.3s;
 }
 
-.circle-button img {
-  width: 60%;
-  height: auto;
+/* При нажатии (эффект вдавливания) */
+.habit-button:active {
+  box-shadow: inset 8px 8px 15px rgba(0, 0, 0, 0.3), 
+              inset -8px -8px 15px rgba(255, 255, 255, 0.9);
+  transform: scale(0.95);
 }
 
-.circle-button:hover {
-  background-color: #ffab91; /* Lighter coral on hover */
+/* Иконки */
+.habit-button img {
+  width: 50%;
+  height: 50%;
+  margin-bottom: 5px;
+}
+
+/* Анимация при наведении */
+.habit-button:hover {
   transform: scale(1.1);
 }
 
-.top-half {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.top-half img {
-  max-width: 60%;
-  max-height: 60%;
-}
-
-.bottom-half {
-  width: 100%;
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  color: #333;
-  font-weight: bold;
-}
-
-.sidebar {
-  position: fixed;
-  left: -250px; /* Hidden by default */
-  width: 250px;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  transition: left 0.3s;
-}
-
-.sidebar.open {
-  left: 0;
-}
-
-body.sidebar-open {
-  margin-left: 250px; /* Adjusts when sidebar is open */
-}
+/* 🎨 Точные пастельные цвета */
+.habit-button.fitness { background: linear-gradient(145deg, #F5B5B3, #E18B89); }
+.habit-button.reading { background: linear-gradient(145deg, #E5C3A6, #D6A889); }
+.habit-button.meditation { background: linear-gradient(145deg, #B0C6DE, #90A9C3); }
+.habit-button.hydration { background: linear-gradient(145deg, #D2C1DB, #B89BBE); }
+.habit-button.relaxation { background: linear-gradient(145deg, #B9D5C3, #9CB8A7); }
+.habit-button.coding { background: linear-gradient(145deg, #E7D3B8, #D4B79C); }
+.habit-button.yoga { background: linear-gradient(145deg, #F2C7C7, #DAA3A3); }
+.habit-button.music { background: linear-gradient(145deg, #D6C1E4, #BA9CD0); }
+.habit-button.study { background: linear-gradient(145deg, #C4D4F1, #A6B8D9); }
+.habit-button.walking { background: linear-gradient(145deg, #F5D6A6, #E0B985); }
