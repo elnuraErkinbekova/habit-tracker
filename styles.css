@@ -1,11 +1,10 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-image: url('images/mountains.jpg'); /* Замени на реальный путь */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   margin: 0;
-  background-color: #fce4ec;
-  transition: margin-left 0.3s;
 }
 
 .button-container {
