@@ -1,0 +1,210 @@
+body {
+    background-image: url('images/mountains.jpg'); /* Замени на реальный путь */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    gap: 40px;
+    max-width: 900px;
+    width: 100%;
+    justify-content: center;
+}
+
+.calendar {
+    background: #1e5180;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 350px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем всё внутри */
+    position: relative;
+    border-radius: 15px; /* Более мягкие углы */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+}
+
+.calendar-header {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.calendar-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+    justify-items: center;
+    margin-bottom: 53px;
+}
+
+.calendar-grid div {
+    width: 50px;
+    height: 50px;
+    background-color: #fefefe;
+    border-radius: 50%; /* Делаем круги */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin: -5px; /* Отрицательный margin притягивает их друг к другу */
+}
+
+
+.day {
+    width: 50px;
+    height: 50px;
+    background: white;
+    color: black;
+    border-radius: 20px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+    
+}
+
+.day.checked {
+    background: #ffb74d;
+    color: white;
+    border: 2px solid #f57c00; /* Окружение колечком */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Легкая тень */
+}
+
+.day.empty {
+    background: rgba(255, 255, 255, 0.3); /* Прозрачные пустые ячейки */
+    color: transparent;
+    pointer-events: none;
+}
+
+.counter {
+    font-size: 24px;
+    font-weight: bold; /* Делаем текст жирнее */
+    background: rgba(246, 244, 244, 0.8);
+    padding: 10px 20px;
+    border-radius: 20px;
+    position: absolute; /* Фиксируем внизу справа */
+    bottom: 10px;
+    right: 20px;
+    
+}
+
+.notes {
+    background: rgb(197, 186, 186);
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.notes h2 {
+    margin-top: 0;
+}
+
+#notes-area {
+    width: 100%;
+    height: 200px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 5px;
+    resize: none;
+    background: #f5f5f5;
+}
+
+.weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-weight: bold;
+    margin-bottom: 15px; /* Уменьшаем расстояние между днями недели и календарем */
+    text-align: center;
+    width: 100%; /* Делаем ширину такой же, как у календаря */
+    font-size: 18px;
+}
+
+.weekdays div {
+    text-align: center;
+    padding: 5px 0;
+    background: #2c699a;
+    color: white;
+    border-radius: 5px;
+}
+
+.day:hover {
+    color: transparent;
+    transform: scale(1.1); /* Увеличиваем день при наведении */
+    background-color: #ffeb3b; /* Яркий цвет при наведении */
+    transition: color 0.3s ease;
+}
+/* Контейнер для колец */
+.rings {
+    position: absolute;
+    top: -22px; /* Опускаем чуть ниже для реалистичности */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    z-index: 2;
+    margin-bottom: 15px;
+}
+
+/* Реалистичные кольца */
+.ring {
+    width: 22px;
+    height: 45px;
+    background: linear-gradient(180deg, #f0f0f0, #b8b8b8, #888, #b8b8b8, #f0f0f0); /* Улучшенный градиент */
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.6), 
+                inset 3px 3px 5px rgba(0, 0, 0, 0.3), 
+                0px 5px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Внутренний разрыв (эффект спирали) */
+.ring::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 28px;
+    background: white; /* Имитация выреза */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.7), 
+                inset 2px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Эффект разреза для имитации разрыва */
+.ring::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 12px;
+    background: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.2), 
+                inset 2px 2px 3px rgba(255, 255, 255, 0.7);
+}
+
