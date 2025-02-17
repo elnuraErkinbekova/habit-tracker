@@ -252,3 +252,147 @@ body {
     inset -5px -5px 10px rgba(255, 255, 255, 0.7);
   transform: scale(0.95);
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  background: #fcd3e7; /* Soft pink background */
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Softer, more diffused shadow */
+  overflow: hidden; /* For rounded corners on top */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px; /* Increased padding */
+}
+
+.modal h2 {
+  color: #d14f8a; /* Deeper pink title */
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.modal input {
+  width: 80%;
+  padding: 8px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal input[type="text"],
+.modal input[type="file"] {
+  width: calc(100% - 22px); /* Account for padding and border */
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid #f0b8c8; /* Lighter pink border */
+  border-radius: 8px; /* Slightly more rounded corners */
+  box-sizing: border-box; /* Prevents padding from increasing width */
+  transition: border-color 0.3s; /* Smooth border color transition */
+}
+
+.modal input[type="text"]:focus,
+.modal input[type="file"]:focus {
+  outline: none;
+  border-color: #d14f8a; /* Highlight on focus */
+  box-shadow: 0 0 5px rgba(210, 80, 137, 0.2); /* Subtle glow on focus */
+}
+
+.modal label {
+  color: #d14f8a; /* Pink label color */
+  margin-bottom: 5px;
+  display: block; /* Makes the label a block element */
+  text-align: left; /* Align label text to the left */
+}
+
+.modal button {
+  margin-top: 10px;
+  background: linear-gradient(145deg, #f781bf, #e15b9b); /* Pink gradient */
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px; /* More rounded button */
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s; /* Added transitions */
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2); /* Added a subtle shadow */
+}
+
+.modal button:hover {
+  background: linear-gradient(
+    145deg,
+    #f990c7,
+    #e667a4
+  ); /* Darker pink on hover */
+  transform: translateY(-2px); /* Slightly lift on hover */
+  box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.25); /* More prominent shadow on hover */
+}
+
+.modal button:active {
+  background: linear-gradient(
+    145deg,
+    #e15b9b,
+    #f781bf
+  ); /* Reversed gradient on click */
+  transform: translateY(0); /* Reset transform on click */
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15); /* Inset shadow on click */
+}
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #d14f8a; /* Pink close icon */
+  opacity: 0.8; /* Slightly less opaque */
+  transition: opacity 0.3s; /* Smooth transition for opacity */
+}
+
+.close:hover {
+  opacity: 1; /* Fully opaque on hover */
+  transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+.color-options {
+  gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(35px, 1fr)
+  ); /* Responsive columns */
+  grid-gap: 10px; /* Consistent gap between colors */
+  margin: 15px 0;
+  justify-content: center;
+  max-width: 250px;
+}
+
+.color-choice {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 3px solid transparent; /* Increased border width */
+  transition: transform 0.2s, border-color 0.2s; /* Added transitions */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15); /* Added a subtle shadow */
+}
+
+.color-choice:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* More prominent shadow on hover */
+}
+
+.color-choice.selected {
+  border: 2px solid black;
+  border-color: #d14f8a; /* Pink border for selected color */
+  box-shadow: 0 0 8px rgba(210, 80, 137, 0.3);
+}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="eng">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,6 +60,23 @@
         >
       </div>
       <button class="add-button">+</button>
+      <!-- To add new habbits -->
+      <div id="habitModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Add a New Habit</h2>
+
+          <input type="text" id="habitInput" placeholder="Enter habit name" />
+
+          <label for="habitImage">Upload Image:</label>
+          <input type="file" id="habitImage" accept="image/*" />
+
+          <p>Or Choose a Color:</p>
+          <div class="color-options"></div>
+
+          <button id="saveHabit">Save</button>
+        </div>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
