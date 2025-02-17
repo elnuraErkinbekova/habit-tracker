@@ -1,24 +1,46 @@
 body {
-  background-image: url('images/mountains.jpg'); /* Замени на реальный путь */
+  background-image: url("images/mountains.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   text-align: center;
   font-family: "Poppins", sans-serif;
-  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 20px;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-y: auto;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-  padding: 20px;
+  padding: 0;
+  width: 100vw;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 25px;
+  gap: 20px;
   justify-content: center;
-  max-width: 800px;
-  margin: auto;
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  padding-bottom: 30px;
+  justify-items: center;
 }
 
 /* === 3D КНОПКИ === */
@@ -26,38 +48,38 @@ body {
   text-decoration: none;
   border: none;
   border-radius: 50%;
-  width: 110px;
-  height: 110px;
-  font-size: 14px;
+  width: 140px;
+  height: 140px;
+  font-size: 16px;
   font-weight: bold;
-  color: #4A4A4A;
+  color: #4a4a4a;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #E8E8E8, #C5C5C5); /* Объёмный эффект */
-  
+  background: linear-gradient(145deg, #e8e8e8, #c5c5c5); /* Объёмный эффект */
+
   /* ГЛУБОКИЕ ТЕНИ (эффект выпуклости) */
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3), 
-              -10px -10px 20px rgba(255, 255, 255, 0.9),
-              inset 2px 2px 5px rgba(255, 255, 255, 0.7),
-              inset -2px -2px 5px rgba(0, 0, 0, 0.2);
-  
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3),
+    -10px -10px 20px rgba(255, 255, 255, 0.9),
+    inset 2px 2px 5px rgba(255, 255, 255, 0.7),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.2);
+
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
 }
 
 /* При нажатии (эффект вдавливания) */
 .habit-button:active {
-  box-shadow: inset 8px 8px 15px rgba(0, 0, 0, 0.3), 
-              inset -8px -8px 15px rgba(255, 255, 255, 0.9);
+  box-shadow: inset 8px 8px 15px rgba(0, 0, 0, 0.3),
+    inset -8px -8px 15px rgba(255, 255, 255, 0.9);
   transform: scale(0.95);
 }
 
 /* Иконки */
 .habit-button img {
-  width: 50%;
-  height: 50%;
+  width: 60%;
+  height: 60%;
   margin-bottom: 5px;
 }
 
@@ -67,14 +89,33 @@ body {
 }
 
 /* 🎨 Точные пастельные цвета */
-.habit-button.fitness { background: linear-gradient(145deg, #F5B5B3, #E18B89); }
-.habit-button.reading { background: linear-gradient(145deg, #E5C3A6, #D6A889); }
-.habit-button.meditation { background: linear-gradient(145deg, #B0C6DE, #90A9C3); }
-.habit-button.hydration { background: linear-gradient(145deg, #D2C1DB, #B89BBE); }
-.habit-button.relaxation { background: linear-gradient(145deg, #B9D5C3, #9CB8A7); }
-.habit-button.coding { background: linear-gradient(145deg, #E7D3B8, #D4B79C); }
-.habit-button.yoga { background: linear-gradient(145deg, #F2C7C7, #DAA3A3); }
-.habit-button.music { background: linear-gradient(145deg, #D6C1E4, #BA9CD0); }
-.habit-button.study { background: linear-gradient(145deg, #C4D4F1, #A6B8D9); }
-.habit-button.walking { background: linear-gradient(145deg, #F5D6A6, #E0B985); }
-
+.habit-button.fitness {
+  background: linear-gradient(145deg, #f5b5b3, #e18b89);
+}
+.habit-button.reading {
+  background: linear-gradient(145deg, #e5c3a6, #d6a889);
+}
+.habit-button.meditation {
+  background: linear-gradient(145deg, #b0c6de, #90a9c3);
+}
+.habit-button.hydration {
+  background: linear-gradient(145deg, #d2c1db, #b89bbe);
+}
+.habit-button.relaxation {
+  background: linear-gradient(145deg, #b9d5c3, #9cb8a7);
+}
+.habit-button.coding {
+  background: linear-gradient(145deg, #e7d3b8, #d4b79c);
+}
+.habit-button.yoga {
+  background: linear-gradient(145deg, #f2c7c7, #daa3a3);
+}
+.habit-button.music {
+  background: linear-gradient(145deg, #d6c1e4, #ba9cd0);
+}
+.habit-button.study {
+  background: linear-gradient(145deg, #c4d4f1, #a6b8d9);
+}
+.habit-button.walking {
+  background: linear-gradient(145deg, #f5d6a6, #e0b985);
+}
