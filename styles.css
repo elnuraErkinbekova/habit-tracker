@@ -1,3 +1,4 @@
+/* good */
 body {
   background-image: url("images/mountains.jpg");
   background-size: cover;
@@ -8,10 +9,13 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   padding-bottom: 20px;
   margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  height: auto;
 }
 
 html,
@@ -28,13 +32,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
+  padding: 0 50px;
   box-sizing: border-box;
   position: absolute;
   top: 0;
   left: 0;
   color: #fff;
-  z-index: 100;
+  z-index: 10;
+  background: none;
+  backdrop-filter: none;
 }
 
 .nav-logo {
@@ -82,7 +88,7 @@ body {
 }
 
 .hero-section {
-  height: 410px;
+  height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -90,11 +96,12 @@ body {
   align-items: center;
   color: #fff;
   text-align: center;
-  padding: 20px;
+  padding: 35px 0;
   box-sizing: border-box;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(5px);
   margin-bottom: 30px; /* Add space between hero section and buttons */
+  position: relative;
 }
 
 .hero-content h1 {
@@ -106,7 +113,7 @@ body {
 .hero-content p {
   font-size: 1.2rem;
   margin-bottom: 30px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 3px rgba(116, 91, 91, 0.5);
 }
 
 .cta-button {
@@ -126,24 +133,37 @@ body {
 }
 
 .container {
-  padding: 0;
-  width: 100vw;
+  padding: 15px; /* this*/
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   display: flex;
+  align-items: center; /* Center content */
+  min-height: 100vh; /* Allow growth */
+  overflow-y: auto; /* Ensure scrolling */
+  overflow: visible;
+  min-height: auto;
+  flex-wrap: wrap;
+  flex-direction: column; /* Ensure buttons stack naturally */
   justify-content: center;
+  gap: 20px;
+  margin-top: -30px;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, 170px);
   gap: 20px;
   justify-content: center;
+  align-items: center;
   width: 100%;
   max-width: none;
   margin: 0 auto;
   padding-bottom: 30px;
   justify-items: center;
+  overflow: visible;
 }
 
 /* === 3D КНОПКИ === */
@@ -151,8 +171,9 @@ body {
   text-decoration: none;
   border: none;
   border-radius: 50%;
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
+  max-height: 130px;
   font-size: 16px;
   font-weight: bold;
   color: #4a4a4a;
@@ -161,6 +182,10 @@ body {
   align-items: center;
   justify-content: center;
   background: linear-gradient(145deg, #e8e8e8, #c5c5c5); /* Объёмный эффект */
+  overflow: hidden;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 
   /* ГЛУБОКИЕ ТЕНИ (эффект выпуклости) */
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3),
@@ -225,7 +250,7 @@ body {
 
 .add-button {
   position: fixed;
-  bottom: 30px;
+  bottom: 20px;
   right: 30px;
   width: 60px;
   height: 60px;
