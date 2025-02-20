@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Open modal
   addButton.addEventListener("click", function () {
     modal.style.display = "block";
+    habitInput.focus();
   });
 
   // Close modal
@@ -49,10 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
         uploadedImage = e.target.result;
       };
       reader.readAsDataURL(file);
+      habitInput.focus();
     }
   });
 
-  // Handle color selection (EVENT DELEGATION)
+  // Handle color selection
   const colorOptionsContainer = document.querySelector(".color-options");
 
   pastelColors.forEach((color) => {
@@ -65,7 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   colorOptionsContainer.addEventListener("click", function (event) {
     const choice = event.target;
-
     if (choice.classList.contains("color-choice")) {
       colorOptionsContainer
         .querySelectorAll(".color-choice")
@@ -76,25 +77,59 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Save habit
+  // Close modal with Escape key
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      modal.style.display = "none";
+    }
+  });
+
+  // Save when Enter key is pressed
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && document.activeElement !== habitImage) {
+      e.preventDefault();
+      saveHabit.click();
+    }
+  });
+
+  // Function to create a habit button with a delete button
+  function createHabitButton(habitName, color, imageSrc = null) {
+    const newButton = document.createElement("a");
+    newButton.classList.add("habit-button");
+    newButton.href = `calendar.html?habit=${habitName.toLowerCase()}`;
+    newButton.style.background = color;
+    newButton.style.position = "relative"; // Ensure relative positioning
+
+    if (imageSrc) {
+      newButton.innerHTML = `<img src="${imageSrc}" alt="${habitName}" />${habitName}`;
+    } else {
+      newButton.innerHTML = habitName;
+    }
+
+    // Create delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-button");
+    deleteBtn.innerHTML = "×";
+    deleteBtn.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent link from opening
+      newButton.remove(); // Remove the habit button
+    });
+
+    newButton.appendChild(deleteBtn);
+    grid.appendChild(newButton);
+  }
+
+  // Save habit button
   saveHabit.addEventListener("click", function () {
     const habitName = habitInput.value.trim();
     if (habitName === "") return;
 
-    const newButton = document.createElement("a");
-    newButton.classList.add("habit-button");
-    newButton.href = `calendar.html?habit=${habitName.toLowerCase()}`;
-
-    if (uploadedImage) {
-      newButton.innerHTML = `<img src="${uploadedImage}" alt="${habitName}" />${habitName}`;
-    } else if (selectedColor) {
-      newButton.style.background = selectedColor;
-      newButton.innerHTML = habitName;
-    } else {
-      newButton.innerHTML = `<img src="images/default.svg" alt="${habitName}" />${habitName}`;
+    if (!selectedColor) {
+      alert("Please select a color!");
+      return;
     }
 
-    grid.appendChild(newButton);
+    createHabitButton(habitName, selectedColor, uploadedImage);
 
     habitInput.value = "";
     habitImage.value = "";
@@ -102,8 +137,26 @@ document.addEventListener("DOMContentLoaded", function () {
     uploadedImage = null;
     colorOptionsContainer
       .querySelectorAll(".color-choice")
-      .forEach((c) => c.classList.remove("selected")); // Clear selected color
+      .forEach((c) => c.classList.remove("selected"));
 
     modal.style.display = "none";
+  });
+
+  // Add delete buttons to existing habit buttons
+  document.querySelectorAll(".habit-button").forEach((button) => {
+    if (!button.querySelector(".delete-button")) {
+      // Prevent duplicates
+      button.style.position = "relative"; // Ensure existing buttons have relative positioning
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.classList.add("delete-button");
+      deleteBtn.innerHTML = "×";
+      deleteBtn.addEventListener("click", function (event) {
+        event.preventDefault();
+        button.remove();
+      });
+
+      button.appendChild(deleteBtn);
+    }
   });
 });
