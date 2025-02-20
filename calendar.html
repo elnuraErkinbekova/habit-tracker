@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Календарь привычек</title>
     <link rel="stylesheet" href="calendar.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="container">
@@ -31,6 +33,19 @@
             <h2>Notes</h2>
             <textarea id="notes-area" placeholder="Add note..."></textarea>
         </div>
+        <div class="goal-container">
+            <label for="goal-input">Цель (дней):</label>
+            <input type="number" id="goal-input" min="1" value="10">
+            <div class="goal-indicator-container">
+                <div class="goal-progress-container">
+                    <div class="goal-indicator">
+                        <div class="goal-progress"></div>
+                    </div>
+                    <span id="goal-percentage">0%</span>
+                </div>
+
+            </div>                     
+        </div>             
     </div>
     <script src="calendar.js"></script>
 </body>

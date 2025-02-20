@@ -1,5 +1,5 @@
 body {
-    background-image: url('images/mountains.jpg'); /* Замени на реальный путь */
+    background-image: url('images/mountains.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -20,26 +20,27 @@ body {
 }
 
 .calendar {
-    background: #1e5180;
-    color: white;
-    border-radius: 10px;
+    background: linear-gradient(145deg, #fff, #5fd6e0c6); /* Гладкий переход для глянца */
+    border-radius: 20px;
     padding: 20px;
-    text-align: center;
     width: 350px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 10px 20px rgba(0, 0, 0, 0.05); /* Внешняя и внутренняя тень */
     display: flex;
     flex-direction: column;
-    align-items: center; /* Центрируем всё внутри */
+    align-items: center;
     position: relative;
-    border-radius: 15px; /* Более мягкие углы */
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Мягкая тень */
+    transform: rotateX(8deg); /* Угол наклона для объема */
+    transition: all 0.3s ease; /* Плавные переходы */
 }
+
+
 
 .calendar-header {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
     margin-top: 20px;
+    color: #000000;
 }
 
 .calendar-grid {
@@ -54,7 +55,7 @@ body {
 .calendar-grid div {
     width: 50px;
     height: 50px;
-    background-color: #fefefe;
+    background-color: #f3e1e1;
     border-radius: 50%; /* Делаем круги */
     display: flex;
     align-items: center;
@@ -62,14 +63,15 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin: -5px; /* Отрицательный margin притягивает их друг к другу */
+    color: #673d5e;
 }
 
 
 .day {
     width: 50px;
     height: 50px;
-    background: white;
-    color: black;
+    background: linear-gradient(180deg, #f3e1e1, #e7c1c1); /* Глянцевый градиент */
+    color: #5c2a52;
     border-radius: 20px !important;
     display: flex;
     justify-content: center;
@@ -77,20 +79,34 @@ body {
     cursor: pointer;
     font-weight: bold;
     transition: 0.3s;
-    
+    box-shadow: inset -3px -3px 5px rgba(110, 87, 87, 0.6), 
+                inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+                0px 5px 8px rgba(0, 0, 0, 0.2); /* Объем */
 }
 
 .day.checked {
-    background: #ffb74d;
+    background: linear-gradient(180deg, #ff7597, #d14578); /* Глянцевый градиент */
     color: white;
-    border: 2px solid #f57c00; /* Окружение колечком */
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* Легкая тень */
+    border: 2px solid #c03568;
+    box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.6), 
+                inset 3px 3px 5px rgba(0, 0, 0, 0.3),
+                0px 5px 8px rgba(0, 0, 0, 0.3); /* Усиленный объем */
 }
+
 
 .day.empty {
     background: rgba(255, 255, 255, 0.3); /* Прозрачные пустые ячейки */
     color: transparent;
     pointer-events: none;
+}
+
+.day:hover {
+    transform: scale(1.1);
+    background: linear-gradient(180deg, #ffb6c1, #ff8096); /* Светлый розовый глянец */
+    transition: 0.3s ease;
+    box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.8), 
+                inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+                0px 7px 10px rgba(0, 0, 0, 0.3);
 }
 
 .counter {
@@ -102,32 +118,50 @@ body {
     position: absolute; /* Фиксируем внизу справа */
     bottom: 10px;
     right: 20px;
+    box-shadow: inset -3px -3px 5px rgba(56, 46, 46, 0.8), 
+                inset 3px 3px 5px rgba(0, 0, 0, 0.2),
+                0px 7px 10px rgba(0, 0, 0, 0.3);
     
 }
 
 .notes {
-    background: rgb(197, 186, 186);
-    border-radius: 10px;
-    padding: 20px;
     width: 300px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #68bfdf, #0457e7c6);
+    box-shadow: inset -3px -3px 5px rgba(23, 22, 22, 0.8), 
+                inset 3px 3px 5px rgba(143, 138, 138, 0.2),
+                0px 7px 10px rgba(118, 105, 105, 0.3);
+    text-align: center;
 }
 
-.notes h2 {
-    margin-top: 0;
+.notes h3 {
+    font-size: 18px;
+    color: #1e1a1a;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-#notes-area {
+.notes-area {
     width: 100%;
-    height: 200px;
-    border: none;
-    outline: none;
-    font-size: 14px;
+    height: 350px;
     padding: 10px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #ae5959, #eaeaea);
+    box-shadow: inset 2px 2px 5px rgba(63, 55, 55, 0.9),
+                inset -2px -2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 30px;
+    color: #333;
     resize: none;
-    background: #f5f5f5;
+    outline: none;
 }
+
+.notes-area::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
 
 .weekdays {
     display: grid;
@@ -137,14 +171,20 @@ body {
     text-align: center;
     width: 100%; /* Делаем ширину такой же, как у календаря */
     font-size: 18px;
+
 }
 
 .weekdays div {
     text-align: center;
     padding: 5px 0;
-    background: #2c699a;
-    color: white;
+    background: rgba(255, 255, 255, 0.3); 
+    color: rgb(9, 8, 8);
     border-radius: 5px;
+    background: linear-gradient(145deg, #ffffff, #e3e3e3);
+    box-shadow: inset 2px 2px 5px rgba(114, 98, 98, 0.8),
+                inset -2px -2px 5px rgba(0, 0, 0, 0.1),
+                3px 3px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .day:hover {
@@ -208,3 +248,93 @@ body {
                 inset 2px 2px 3px rgba(255, 255, 255, 0.7);
 }
 
+.goal-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.goal-container label {
+    font-weight: bold;
+}
+
+#goal-input {
+    width: 60px;
+    padding: 5px;
+    margin-left: 5px;
+    text-align: center;
+    border: 2px solid #ff7597;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.goal-indicator {
+    width: 100%;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 20px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.goal-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #ff7597, #d14578);
+    border-radius: 20px;
+    transition: width 0.5s ease-in-out;
+}
+
+#goal-percentage {
+    min-width: 40px; /* Фиксированная ширина */
+    text-align: right; /* Выравнивание справа */
+    font-weight: bold;
+    display: block;
+    text-align: right;
+}
+
+.goal-progress-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px; /* Расстояние между индикатором и процентом */
+}
+
+.goal-indicator {
+    flex: 1; /* Растягиваем индикатор, чтобы занял доступное пространство */
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.goal-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #ff7597, #d14578);
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+#goal-percentage {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    width: 50px; /* Чтобы процент не прыгал */
+    text-align: right;
+}
+
+.goal-indicator-container {
+    width: 360px; /* Длиннее индикатор */
+    border: 2px solid #ccc;
+    padding: 10px;
+    border-radius: 15px;
+    background: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
