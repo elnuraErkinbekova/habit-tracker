@@ -13,10 +13,47 @@ body {
   align-items: center;
   padding-bottom: 20px;
   margin: 0;
-  padding: 0;
   overflow-y: auto;
   overflow-x: hidden;
   height: auto;
+}
+
+/* General adjustments for responsiveness */
+body {
+  padding: 0 5%;
+  font-size: 1rem; /* Use relative font sizes */
+}
+
+/* Breakpoints for different desktop resolutions */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1000px;
+    gap: 30px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1200px;
+  }
+  .hero-content h1 {
+    font-size: 3rem; /* Bigger text for larger screens */
+  }
+}
+
+@media (min-width: 1600px) {
+  .grid {
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(250px, 1fr)
+    ); /* More flexible grid */
+  }
+}
+
+@media (min-width: 1920px) {
+  body {
+    transform: scale(1.05);
+  }
 }
 
 html,
@@ -86,9 +123,15 @@ body {
   transform: scaleX(1);
 }
 
+@media (min-width: 1400px) {
+  .navbar {
+    padding: 0 80px;
+  }
+}
+
 .hero-section {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -168,9 +211,10 @@ body {
   text-decoration: none;
   border: none;
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  max-height: 150px;
+  width: clamp(150px, 10vw, 200px);
+  height: clamp(140px, 10vw, 200px);
+  max-height: 200px;
+  max-width: 200px;
   font-size: 16px;
   font-weight: bold;
   color: #4a4a4a;
@@ -530,11 +574,4 @@ body {
 .auth-button:hover {
   background-color: #267e39;
   transform: translateY(-2px);
-}
-
-/* Responsive tweaks */
-@media (max-width: 600px) {
-  .auth-box {
-    padding: 20px; /* Adjust padding for smaller screens */
-  }
 }
