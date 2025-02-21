@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="images/favicon.png" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">HabitTracker</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-container">
+      <div class="auth-box">
+        <h2>Login</h2>
+        <form id="login-form">
+          <div class="input-group">
+            <input type="text" id="username" placeholder="Username" required />
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Enter Password" required />
+          </div>
+          <button type="submit" class="auth-button">Login</button>
+        </form>
+        <p class="switch-text">
+          Don't have an account? <a href="signup.html">Sign Up</a>
+        </p>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Get input values
+          let username = document
+            .querySelector('input[placeholder="Username"]')
+            .value.trim();
+          let password = document
+            .querySelector('input[placeholder="Enter Password"]')
+            .value.trim();
+
+          // Check if all fields are filled
+          if (username && password) {
+            window.location.href = "habits.html"; // Change to your actual destination page
+          } else {
+            alert("Please fill in all fields.");
+          }
+        });
+    </script>
+  </body>
+</html>
