@@ -9,30 +9,38 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 15%;
+    box-sizing: border-box;
 }
 
 .container {
-    display: flex;
-    gap: 40px;
-    max-width: 900px;
-    width: 100%;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 1vw;
+    max-width: 90%;
+    justify-content: center;
+    align-items: stretch;
+    min-height: 75vh;
+}
+
+.calendar, .notes, #advice-box, .goal-container {
+    flex: 1;
+    min-width: 300px;
 }
 
 .calendar {
-    background: linear-gradient(145deg, #fff, #5fd6e0c6); /* Гладкий переход для глянца */
+    background: linear-gradient(145deg, #2E3B55, #445A7B);
     border-radius: 20px;
     padding: 35px;
-    width: 650px;
-    height: 700px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 10px 20px rgba(0, 0, 0, 0.05); /* Внешняя и внутренняя тень */
+    max-width: 650px;
+    min-height: 60vh;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 10px 20px rgba(0, 0, 0, 0.05);
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    transform: rotateX(8deg); /* Угол наклона для объема */
-    transition: all 0.3s ease; /* Плавные переходы */
-    margin-right: 820px;
+    transform: rotateX(8deg);
+    transition: all 0.3s ease;
 }
 
 .calendar-container {
@@ -40,31 +48,30 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    flex: 2;
-    max-width: 80%;
+    width: 100%;
 }
 
 .calendar-header {
-    font-size: 35px;
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 10px;
+    color: #F0EAD6;
+    text-align: center;
     margin-top: 20px;
-    color: #000000;
 }
 
 .calendar-grid {
-    width: 100%;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
     justify-items: center;
-    margin-bottom: 3px;
+    width: 100%;
 }
+
 
 .calendar-grid div {
     width: 90px;
     height: 90px;
-    background-color: #f3e1e1;
+    background-color: #7887AB;
     border-radius: 50%; /* Делаем круги */
     display: flex;
     align-items: center;
@@ -72,27 +79,23 @@ body {
     font-size: 35px;
     font-weight: bold;
     margin: -5px; /* Отрицательный margin притягивает их друг к другу */
-    color: #673d5e;
+    color: #F0EAD6;
 }
-
 
 .day {
     width: 50px;
     height: 50px;
-    background: linear-gradient(180deg, #f3e1e1, #e7c1c1); /* Глянцевый градиент */
-    color: #5c2a52;
-    border-radius: 42px !important;
+    background: linear-gradient(180deg, #5B6E91, #3E506F);
+    color: #F0EAD6;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    position: relative;
     font-weight: bold;
-    transition: 0.3s;
-    box-shadow: inset -3px -3px 5px rgba(110, 87, 87, 0.6), 
-                inset 3px 3px 5px rgba(0, 0, 0, 0.2),
-                0px 5px 8px rgba(0, 0, 0, 0.2); /* Объем */
+    transition: transform 0.2s ease, background-color 0.2s ease;
 }
+
 
 .day.checked {
     background: linear-gradient(180deg, #ff7597, #d14578); /* Глянцевый градиент */
@@ -111,13 +114,10 @@ body {
 }
 
 .day:hover {
-    transform: scale(1.1);
-    background: linear-gradient(180deg, #ffb6c1, #ff8096); /* Светлый розовый глянец */
-    transition: 0.3s ease;
-    box-shadow: inset -3px -3px 5px rgba(255, 255, 255, 0.8), 
-                inset 3px 3px 5px rgba(0, 0, 0, 0.2),
-                0px 7px 10px rgba(0, 0, 0, 0.3);
+    transform: scale(1.2);
+    background: linear-gradient(180deg, #ffb6c1, #ff8096);
 }
+
 
 .counter {
     font-size: 34px;
@@ -133,24 +133,21 @@ body {
                 0px 7px 10px rgba(0, 0, 0, 0.3);
     
 }
+
 .notes {
-    width: 1200px !important;
-    padding: 60px !important;
-    background: #f8f9fa;
+    padding: 20px;
+    background: #2E3B55;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    font-family: 'Poppins', sans-serif;
-    margin-left: -400px;
-    max-width: 90%;
+    text-align: center;
 }
 
-#notes-area {
-    width: 100% !important;
-    height: 200px !important;
-    font-size: 18px;
+.notes-area {
+    width: 100%;
+    height: 200px;
+    font-size: 1rem;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 10px;
     resize: none;
 }
 
@@ -162,22 +159,7 @@ body {
     text-transform: uppercase;
 }
 
-.notes-area {
-    width: 100%;
-    height: 500px; /* Увеличенная высота */
-    padding: 15px;
-    border: none;
-    border-radius: 15px;
-    background: linear-gradient(145deg, #ffffff, #e0e0e0);
-    box-shadow: inset 5px 5px 10px rgba(63, 55, 55, 0.2),
-                inset -5px -5px 10px rgba(255, 255, 255, 0.7);
-    font-size: 20px;
-    color: #333;
-    resize: none;
-    outline: none;
-    margin-top: 20px;
-    transition: 0.3s ease;
-}
+
 
 .notes-area::placeholder {
     color: #aaa;
@@ -194,21 +176,20 @@ body {
 .weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    font-weight: bold;
-    margin-bottom: 35px; /* Уменьшаем расстояние между днями недели и календарем */
+    font-size: 1.5rem;
     text-align: center;
-    width: 100%; /* Делаем ширину такой же, как у календаря */
-    font-size: 30px;
-
+    width: 100%;
+    margin-bottom: 3vh;
+    margin-top: 2.5vh;
 }
+
 
 .weekdays div {
     text-align: center;
     padding: 7px 0;
-    background: rgba(255, 255, 255, 0.3); 
-    color: rgb(9, 8, 8);
+    background: linear-gradient(145deg, #354B6D, #2A3D58); 
+    color: #F0EAD6;
     border-radius: 15px;
-    background: linear-gradient(145deg, #ffffff, #e3e3e3);
     box-shadow: inset 2px 2px 5px rgba(114, 98, 98, 0.8),
                 inset -2px -2px 5px rgba(0, 0, 0, 0.1),
                 3px 3px 6px rgba(0, 0, 0, 0.2);
@@ -287,18 +268,19 @@ body {
     font-size: 42px; /* Увеличиваем размер шрифта */
     font-weight: bold; /* Делаем текст жирнее */
     margin-bottom: 10px; /* Отступ вниз */
-    margin-left: -800px; /* Сдвигаем левее */
+ /* Сдвигаем левее */
 }
 
 
 #goal-input {
-    width: 60px;
+    width: 90px;
     padding: 5px;
-    margin-left: 5px;
     text-align: center;
     border: 2px solid #ff7597;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 26px;
+    height: 35px;
+
 }
 
 .goal-indicator {
@@ -370,25 +352,21 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-left: -390px;
+
 }
 
 #advice-box {
-    background: linear-gradient(145deg, #fdf3e4, #fbe0c3);
-    border-radius: 15px;
     padding: 20px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), 
-                inset -3px -3px 5px rgba(255, 255, 255, 0.6), 
-                inset 3px 3px 5px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
-    margin: 0 auto 20px -43%;
+    background: #445A7B;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 850%;
+    color: #F0EAD6;
 }
 
 #advice-box h2 {
     font-size: 24px;
-    color: #8b4513;
+    color: #F0EAD6;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -422,7 +400,7 @@ body {
 
 .day.checked::after {
     content: "✔️"; /* Галочка */
-    font-size: 24px;
+    font-size: 34px;
     color: white;
     font-weight: bold;
     position: absolute;
@@ -434,3 +412,42 @@ body {
     gap: 10px; /* Отступ между советами и заметками */
 }
 
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr, 1fr;
+        gap: 5px;
+    }
+    .calendar, .notes, .advice {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        align-items: center;
+    }
+    .calendar-header {
+        font-size: 1.5rem;
+    }
+    .day {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+    }
+    .notes, .advice {
+        padding: 15px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .calendar-header {
+        font-size: 1.2rem;
+    }
+    .day {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+}
