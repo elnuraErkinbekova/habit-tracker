@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Habit Tracker</title>
+    <title>Habits</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="images/favicon.png" />
   </head>
@@ -32,9 +32,7 @@
           ><img src="images/hydration.svg" alt="Hydration" />Hydration
         </a>
         <button class="delete-button">×</button>
-        <a
-          href="calendar.html?habit=relaxsation"
-          class="habit-button relaxation"
+        <a href="calendar.html?habit=relaxation" class="habit-button relaxation"
           ><img src="images/relaxation.svg" alt="Relaxation" />Relaxation
         </a>
         <button class="delete-button">×</button>
@@ -60,6 +58,7 @@
         <button class="delete-button">×</button>
       </div>
       <button class="add-button">+</button>
+
       <!-- To add new habbits -->
       <div id="habitModal" class="modal">
         <div class="modal-content">
@@ -68,10 +67,10 @@
 
           <input type="text" id="habitInput" placeholder="Enter habit name" />
 
-          <label for="habitImage">Upload Image:</label>
+          <label for="habitImage">Upload Image (Optional):</label>
           <input type="file" id="habitImage" accept="image/*" />
 
-          <p>And/Or Choose a Color:</p>
+          <p>Choose a Color (Required):</p>
           <div class="color-options"></div>
 
           <button id="saveHabit">Save</button>

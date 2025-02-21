@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const habitImage = document.getElementById("habitImage");
   const grid = document.querySelector(".grid");
 
+  console.log(
+    typeof localStorage !== "undefined"
+      ? "LocalStorage is available"
+      : "LocalStorage is not supported"
+  );
+
   const pastelColors = [
     "#f8c8dc",
     "#f5d0c8",
@@ -48,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const reader = new FileReader();
       reader.onload = function (e) {
         uploadedImage = e.target.result;
+        console.log("Uploaded Image Data URL:", uploadedImage);
       };
       reader.readAsDataURL(file);
       habitInput.focus();
@@ -73,7 +80,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .forEach((c) => c.classList.remove("selected"));
       choice.classList.add("selected");
       selectedColor = choice.dataset.color;
-      uploadedImage = null;
+
+      if (!uploadedImage) {
+        uploadedImage = null;
+      }
     }
   });
 
@@ -94,14 +104,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to create a habit button with a delete button
   function createHabitButton(habitName, color, imageSrc = null) {
+    if (!habitName) {
+      console.error("Invalid habitName:", habitName);
+      return;
+    }
+
     const newButton = document.createElement("a");
     newButton.classList.add("habit-button");
     newButton.href = `calendar.html?habit=${habitName.toLowerCase()}`;
     newButton.style.background = color;
-    newButton.style.position = "relative"; // Ensure relative positioning
+    newButton.style.position = "relative";
+    newButton.dataset.habitName = habitName;
 
     if (imageSrc) {
-      newButton.innerHTML = `<img src="${imageSrc}" alt="${habitName}" />${habitName}`;
+      newButton.innerHTML = `<img src="${imageSrc}" alt="${habitName}" /> <span>${habitName}</span>`;
     } else {
       newButton.innerHTML = habitName;
     }
@@ -111,8 +127,9 @@ document.addEventListener("DOMContentLoaded", function () {
     deleteBtn.classList.add("delete-button");
     deleteBtn.innerHTML = "×";
     deleteBtn.addEventListener("click", function (event) {
-      event.preventDefault(); // Prevent link from opening
-      newButton.remove(); // Remove the habit button
+      event.preventDefault();
+      newButton.remove();
+      saveHabitsToLocalStorage();
     });
 
     newButton.appendChild(deleteBtn);
@@ -127,6 +144,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Save habit button
   saveHabit.addEventListener("click", function () {
+    console.log("Saving habit with image:", uploadedImage);
+
     const habitName = habitInput.value.trim();
     if (habitName === "") return;
 
@@ -136,6 +155,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     createHabitButton(habitName, selectedColor, uploadedImage);
+
+    saveHabitsToLocalStorage();
 
     habitInput.value = "";
     habitImage.value = "";
@@ -151,8 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Add delete buttons to existing habit buttons
   document.querySelectorAll(".habit-button").forEach((button) => {
     if (!button.querySelector(".delete-button")) {
-      // Prevent duplicates
-      button.style.position = "relative"; // Ensure existing buttons have relative positioning
+      button.style.position = "relative";
 
       const deleteBtn = document.createElement("button");
       deleteBtn.classList.add("delete-button");
@@ -165,4 +185,30 @@ document.addEventListener("DOMContentLoaded", function () {
       button.appendChild(deleteBtn);
     }
   });
+
+  function saveHabitsToLocalStorage() {
+    const habits = [];
+
+    document.querySelectorAll(".habit-button").forEach((button) => {
+      const habitName = button.dataset.habitName;
+      const color = button.style.background;
+      const image = button.querySelector("img")
+        ? button.querySelector("img").src
+        : null;
+
+      habits.push({ habitName, color, image });
+    });
+
+    localStorage.setItem("habits", JSON.stringify(habits));
+  }
+
+  function loadHabitsFromLocalStorage() {
+    const habits = JSON.parse(localStorage.getItem("habits")) || [];
+
+    habits.forEach(({ habitName, color, image }) => {
+      createHabitButton(habitName, color, image);
+    });
+  }
+
+  loadHabitsFromLocalStorage();
 });

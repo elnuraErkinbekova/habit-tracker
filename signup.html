@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Habit Tracker</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="images/favicon.png" />
   </head>
@@ -39,9 +39,8 @@
       document
         .getElementById("signup-form")
         .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent default form submission
+          event.preventDefault();
 
-          // Get input values
           let name = document
             .querySelector('input[placeholder="Full Name"]')
             .value.trim();
@@ -52,9 +51,8 @@
             .querySelector('input[placeholder="Create Password"]')
             .value.trim();
 
-          // Check if all fields are filled
           if (name && email && password) {
-            window.location.href = "habits.html"; // Change to your actual destination page
+            window.location.href = "habits.html";
           } else {
             alert("Please fill in all fields.");
           }
