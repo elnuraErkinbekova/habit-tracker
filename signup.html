@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="images/favicon.png" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-logo">HabitTracker</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+      </ul>
+    </nav>
+
+    <div class="auth-container">
+      <div class="auth-box">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+          <div class="input-group">
+            <input type="text" placeholder="Full Name" required />
+          </div>
+          <div class="input-group">
+            <input type="email" placeholder="Email Address" required />
+          </div>
+          <div class="input-group">
+            <input type="password" placeholder="Create Password" required />
+          </div>
+          <button type="submit" class="auth-button">Sign Up</button>
+        </form>
+        <p class="switch-text">
+          Already have an account? <a href="login.html">Login</a>
+        </p>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("signup-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent default form submission
+
+          // Get input values
+          let name = document
+            .querySelector('input[placeholder="Full Name"]')
+            .value.trim();
+          let email = document
+            .querySelector('input[placeholder="Email Address"]')
+            .value.trim();
+          let password = document
+            .querySelector('input[placeholder="Create Password"]')
+            .value.trim();
+
+          // Check if all fields are filled
+          if (name && email && password) {
+            window.location.href = "habits.html"; // Change to your actual destination page
+          } else {
+            alert("Please fill in all fields.");
+          }
+        });
+    </script>
+  </body>
+</html>

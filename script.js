@@ -117,6 +117,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     newButton.appendChild(deleteBtn);
     grid.appendChild(newButton);
+
+    autoScroll();
+  }
+
+  function autoScroll() {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }
 
   // Save habit button
