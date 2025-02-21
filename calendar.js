@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Получаем текущую привычку из URL
     const urlParams = new URLSearchParams(window.location.search);
     const selectedHabit = urlParams.get("habit") || "habit_default";
-    
+
     // Названия месяцев
     const monthNames = [
         "January", "February", "March", "April", "May", "June",
@@ -85,24 +85,33 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadCalendar() {
         calendarGrid.innerHTML = "";
         let checkedDays = getHabitData();  // Получаем дни, которые уже отмечены как выполненные
-    
+
+        // Добавляем пустые ячейки до первого дня месяца
         for (let i = 0; i < adjustedFirstDayIndex; i++) {
             const emptyCell = document.createElement("div");
             emptyCell.classList.add("day", "empty");
             calendarGrid.appendChild(emptyCell);
         }
-    
+
+        // Добавляем дни месяца
         for (let day = 1; day <= daysInMonth; day++) {
             const dayElement = document.createElement("div");
             dayElement.textContent = day;
             dayElement.classList.add("day");
             dayElement.dataset.day = day;
-    
+
+            // Применяем случайный цвет к каждому дню
+            const colors = ['var(--color1)', 'var(--color2)', 'var(--color3)', 'var(--color4)'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            dayElement.style.backgroundColor = randomColor;
+
+            // Проверяем, если день отмечен
             if (checkedDays.includes(day)) {
                 dayElement.textContent = "✔️";  // Если день выполнен, показываем галочку
                 dayElement.classList.add("checked");
             }
-    
+
+            // Обработчик клика
             dayElement.addEventListener("click", function () {
                 let data = getHabitData();
                 if (data.includes(day)) {
@@ -116,15 +125,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     this.classList.add("checked");
                     markDayAsCompleted(day, true);
                 }
-            
+
                 saveHabitData(data);
                 updateCounter();
             });
-            
-    
+
             calendarGrid.appendChild(dayElement);
         }
-    
+
+        // Добавляем пустые ячейки в конце, если нужно
         let totalCells = adjustedFirstDayIndex + daysInMonth;
         let emptyCellsAtEnd = 35 - totalCells;
         for (let i = 0; i < emptyCellsAtEnd; i++) {
@@ -132,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
             emptyCell.classList.add("day", "empty");
             calendarGrid.appendChild(emptyCell);
         }
-    
+
         updateCounter();
     }
 
@@ -143,6 +152,18 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadNotes() {
         notesArea.value = localStorage.getItem(`habitNotes_${selectedHabit}`) || "";
     }
+    
+    document.addEventListener("DOMContentLoaded", function() {
+        const days = document.querySelectorAll(".day");
+        const colors = ['var(--color1)', 'var(--color2)', 'var(--color3)', 'var(--color4)'];
+    
+        days.forEach(day => {
+            // Случайно выбираем один из 4-х цветов
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            day.style.backgroundColor = randomColor;
+        });
+    });
+    
 
     notesArea.addEventListener("input", function () {
         localStorage.setItem(`habitNotes_${selectedHabit}`, notesArea.value);
